@@ -9,10 +9,16 @@ import Foundation
 import SwiftData
 
 @Model
-final class Item {
+class Item {
+    var url: String
+    var title: String?
+    var siteName: String?
+    var imagePath: String?
+    var iconPath: String?
     var timestamp: Date
-    
-    init(timestamp: Date) {
-        self.timestamp = timestamp
+
+    init(url: String) {
+        self.url = url
+        self.timestamp = Date()
     }
 }
