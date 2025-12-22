@@ -14,7 +14,9 @@
 		4513EF3C2EF738E200431DE5 /* Exceptions for "CookBook" folder in "CookBook" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				ImageCache.swift,
 				Info.plist,
+				PreviewFetcher.swift,
 			);
 			target = 4513EF2E2EF738E000431DE5 /* CookBook */;
 		};
