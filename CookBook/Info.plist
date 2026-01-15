@@ -2,9 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIBackgroundModes</key>
+	<key>APP_TOKEN</key>
+	<string>$(APP_TOKEN)</string>
+	<key>CFBundleDocumentTypes</key>
 	<array>
-		<string>remote-notification</string>
+		<dict/>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>cookbook-share</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>cookbook</string>
+			</array>
+		</dict>
+	</array>
+	<key>MISTRAL_API_KEY</key>
+	<string>$(MISTRAL_API_KEY)</string>
+	<key>SPOONACULAR_API_KEY</key>
+	<string>$(SPOONACULAR_API_KEY)</string>
+	<key>UIBackgroundModes</key>
+	<array/>
 </dict>
 </plist>
