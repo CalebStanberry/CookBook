@@ -12,7 +12,10 @@ CookBook is an iOS app for managing recipes. It allows users to:
 
 **Screen Shots**  
 
-![CookBook List View](https://github.com/CalebStanberry/CookBook/blob/main/CookBook%20Images/IMG_8372.PNG) ![CookBook RecipeGroup View](https://github.com/CalebStanberry/CookBook/blob/main/CookBook%20Images/IMG_8374.PNG)
+| | | |
+|---|---|---|
+| <img src="CookBook Images/IMG_8372.PNG" width="220"> | <img src="CookBook Images/IMG_8376.PNG" width="220"> | <img src="CookBook Images/IMG_8379.PNG" width="220"> |
+| <img src="CookBook Images/IMG_8372.PNG" width="220"> | <img src="CookBook Images/IMG_8378.PNG" width="220"> | <img src="..." width="220"> |
 
 ⸻  
 
