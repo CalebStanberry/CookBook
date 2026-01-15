@@ -15,7 +15,7 @@ CookBook is an iOS app for managing recipes. It allows users to:
 | | | |
 |---|---|---|
 | <img src="CookBook Images/IMG_8372.PNG" width="220"> | <img src="CookBook Images/IMG_8376.PNG" width="220"> | <img src="CookBook Images/IMG_8379.PNG" width="220"> |
-| <img src="CookBook Images/IMG_8372.PNG" width="220"> | <img src="CookBook Images/IMG_8378.PNG" width="220"> | <img src="..." width="220"> |
+| <img src="CookBook Images/IMG_8374.PNG" width="220"> | <img src="CookBook Images/IMG_8375.PNG" width="220"> | <img src="CookBook Images/IMG_8378.PNG" width="220"> |
 
 ⸻  
 
