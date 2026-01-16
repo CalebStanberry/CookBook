@@ -25,7 +25,7 @@ struct IngredientRowView: View {
                             alignment: .leading
                         )
                         // Color blue if JSON-LD data is available, red otherwise
-                        .foregroundStyle(Color(ingredient.JSONLDavailable ? .blue : .red))
+                        //.foregroundStyle(Color(ingredient.JSONLDavailable ? .blue : .red))
                     
                     Spacer()
 
