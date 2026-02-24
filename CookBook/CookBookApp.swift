@@ -24,7 +24,8 @@ struct CookBookApp: App {
                 for: CookBook.self,
                     RecipeGroup.self,
                     Recipe.self,
-                    Ingredient.self
+                    Ingredient.self,
+                    ShoppingItem.self
             )
         } catch {
             fatalError("Failed to initialize ModelContainer: \(error)")

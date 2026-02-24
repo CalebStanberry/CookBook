@@ -14,8 +14,9 @@ import PhotosUI
 struct RecipeDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var recipe: Recipe                   // Recipe to display
-    @State private var showSubstitutions = false  // Toggle for showing substitutions
-    @State var recipeToEdit: Recipe?              // Used to navigate to edit view
+    @State private var showSubstitutions = false   // Toggle for showing substitutions
+    @State var recipeToEdit: Recipe?               // Used to navigate to edit view
+    @State var displayNutrionFacts: Bool = false          // Used to display nutrition facts
 
     /// Ingredients sorted alphabetically
     private var sortedIngredients: [Ingredient] {
@@ -37,14 +38,61 @@ struct RecipeDetailView: View {
                         .clipped()
                 }
 
-                // Title & Site Info
+                // Title, Site Info, & Nutrional Info
                 VStack(alignment: .leading, spacing: 8) {
                     Text(recipe.title)
                         .font(.title)
                         .bold()
-                    Text(recipe.siteName)
-                        .font(.caption)
+
+                    HStack {
+                        // Leading side overlay (site name)
+                        Text(recipe.siteName)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        Spacer()
+
+                        // Trailing side calories button
+                        Button {
+                            withAnimation(.spring(duration: 0.35)) {
+                                    displayNutrionFacts.toggle()
+                                }
+                        } label: {
+                            HStack {
+                                Text("Calories")
+                                Image(systemName: "chevron.down")
+                                    .rotationEffect(.degrees(displayNutrionFacts ? 180 : 0))
+                                    .animation(.easeInOut, value: displayNutrionFacts)
+                            }
+                        }
+                        .disabled(recipe.calories == nil)
+                    }
+
+                    if displayNutrionFacts {
+                        Divider()
+                        HStack(alignment: .center) {
+                            if let cal = recipe.calories { GridRow {
+                                Spacer()
+                                Text("Calories")
+                                    .foregroundStyle(Color(.white))
+                                    .bold()
+                                Text(cal.clean)
+                                    .bold()
+                                Spacer()
+                            } }
+                        }
+                        
+                        Grid(alignment: .leading, horizontalSpacing: 10, verticalSpacing: 4) {
+    
+                            if let fat = recipe.totalFat, let protein = recipe.totalProtein { GridRow { Text("Fat").foregroundStyle(Color(.indigo)); Text(fat.clean + "g"); Spacer(); Text("Protein").foregroundStyle(Color(.orange)); Text(protein.clean + "g") } }
+                            if let carbs = recipe.totalCarbs, let sugar = recipe.totalSugar { GridRow { Text("Carbs").foregroundStyle(Color(.teal)); Text(carbs.clean + "g"); Spacer(); Text("Sugar").foregroundStyle(Color(.red)); Text(sugar.clean + "g") } }
+                            //if let protein = recipe.totalProtein { GridRow { Text("Protein"); Text(protein.clean + "g").foregroundStyle(Color(.orange)) } }
+                            //if let sugar = recipe.totalSugar { GridRow { Text("Sugar"); Text(sugar.clean + "g").foregroundStyle(Color(.red)) } }
+                        }
+                        .font(.callout)
                         .foregroundStyle(.secondary)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
                 }
                 .padding(.horizontal)
 
@@ -89,6 +137,12 @@ struct RecipeDetailView: View {
 
                 Spacer()
 
+                Button {
+                    addIngredientsToShoppingList()
+                } label: {
+                    Image(systemName: "cart.badge.plus")
+                }
+
                 Button(action: {
                     withAnimation {
                         showSubstitutions.toggle()
@@ -124,4 +178,27 @@ struct RecipeDetailView: View {
         }
         .padding(.horizontal)
     }
+
+    private func addIngredientsToShoppingList() {
+        let existingMinSort: Int = {
+            var descriptor = FetchDescriptor<ShoppingItem>(
+                sortBy: [SortDescriptor(\.sortOrder)]
+            )
+            descriptor.fetchLimit = 1
+            let items = try? modelContext.fetch(descriptor)
+            return items?.first?.sortOrder ?? 0
+        }()
+        var nextSort = existingMinSort - 1
+
+        for ingredient in recipe.ingredients {
+            let item = ShoppingItem(
+                name: ingredient.name,
+                amount: ingredient.amount,
+                sortOrder: nextSort
+            )
+            modelContext.insert(item)
+            nextSort -= 1
+        }
+    }
 }
+

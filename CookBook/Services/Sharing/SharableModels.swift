@@ -66,6 +66,13 @@ struct ShareableRecipeDTO: Codable {
 
     /// Step instructions in ordered list format.
     let steps: [String]
+    
+    // Nutrional Information for the recipe
+    let calories: Double?
+    let totalFat: Double?
+    let totalCarbs: Double?
+    let totalProtein: Double?
+    let totalSugar: Double?
 
     /// Optional remote URL for hero image.
     /// Imported via ImageDownloadService and stored locally as path.

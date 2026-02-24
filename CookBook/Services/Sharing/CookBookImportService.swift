@@ -116,6 +116,12 @@ enum CookBookImportService {
         recipe.title = dto.title
         recipe.siteName = dto.siteName
         recipe.steps = dto.steps
+        
+        recipe.calories = dto.calories
+        recipe.totalFat = dto.totalFat
+        recipe.totalCarbs = dto.totalCarbs
+        recipe.totalProtein = dto.totalProtein
+        recipe.totalSugar = dto.totalSugar
 
         // Since remote data is authoritative here:
         recipe.previewFailed = false
@@ -275,6 +281,12 @@ enum CookBookImportService {
         recipe.siteName = dto.siteName
         recipe.steps = dto.steps
         recipe.url = dto.url
+        
+        recipe.calories = dto.calories
+        recipe.totalFat = dto.totalFat
+        recipe.totalCarbs = dto.totalCarbs
+        recipe.totalProtein = dto.totalProtein
+        recipe.totalSugar = dto.totalSugar
 
         var existingIngredientsMap: [UUID: Ingredient] = [:]
         for ingredient in recipe.ingredients {

@@ -35,6 +35,12 @@ struct CookBookListView: View {
     var body: some View {
         NavigationStack {
             List {
+                NavigationLink {
+                    ShoppingListView()
+                } label: {
+                    Label("Shopping List", systemImage: "cart")
+                }
+
                 ForEach(sortedCookBooks) { book in
                     NavigationLink {
                         CookBookDetailView(cookBook: book)
@@ -180,6 +186,7 @@ private struct AddCookBookSheet: View {
             for: CookBook.self,
                 Recipe.self,
                 Ingredient.self,
+                ShoppingItem.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
         )
 

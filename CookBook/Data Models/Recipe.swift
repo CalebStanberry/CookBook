@@ -42,6 +42,14 @@ final class Recipe {
     /// Ingredients associated with this recipe
     @Relationship(deleteRule: .cascade, inverse: \Ingredient.recipe)
     var ingredients: [Ingredient] = []
+    
+    // Nutritional Information
+    
+    var calories: Double?
+    var totalFat: Double?
+    var totalCarbs: Double?
+    var totalProtein: Double?
+    var totalSugar: Double?
 
     // Cached Assets
 
@@ -107,6 +115,11 @@ extension Recipe {
             createdAt: createdAt,
             ingredients: ingredients.map { $0.toShareableDTO() },
             steps: steps,
+            calories: calories,
+            totalFat: totalFat,
+            totalCarbs: totalCarbs,
+            totalProtein: totalProtein,
+            totalSugar: totalSugar,
             heroImageURL: imageURL
         )
     }
@@ -163,5 +176,12 @@ extension Recipe {
         }
 
         return documentsURL.appendingPathComponent(fileName).path
+    }
+}
+
+// Allows nutrional info to be displayed neatly with trailing zeroes dropped
+extension Double {
+    var clean: String {
+        self == floor(self) ? String(format: "%.0f", self) : String(self)
     }
 }

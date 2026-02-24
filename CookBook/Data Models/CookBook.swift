@@ -45,6 +45,7 @@ final class CookBook: Identifiable {
     /// Cascading deletion; inverse is `RecipeGroup.cookBook`
     @Relationship(deleteRule: .cascade, inverse: \RecipeGroup.cookBook)
     var recipeGroups: [RecipeGroup] = []
+    
 
     init(
         name: String,
